@@ -1,12 +1,13 @@
 version: 0.0.3
 jobId: "1002"
-jobName: Customer Details Harshil
+jobName: Customer Details Harshil 2
 jobType: Source Aligned Data Product
 developerId: a421c8d2-ced6-4227-993e-04155a8feb50
 domain: sale
-alias: Write_to_iceberg_for_Customer_Harshil
+alias: Write_to_iceberg_for_Customer_Harshil_2
 discoveryPort:
-  name: Customer Details Harshil
+  name: Customer Details Harshil 2
+  shortDescription: Sample short description.
 inputPorts:
   - alias: Customer_Master_2
     isDynamic: true
