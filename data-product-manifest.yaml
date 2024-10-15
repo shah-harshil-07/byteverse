@@ -1,175 +1,59 @@
-version: 0.0.3
-jobId: "1002"
-jobName: Customer Details Harshil 4
+version: 0.0.1
+jobId: "1101"
+jobName: NewSCDP_archive_test
 jobType: Source Aligned Data Product
-developerId: a421c8d2-ced6-4227-993e-04155a8feb50
+developerId: a7213db3-af1d-4810-ac21-e49160b82291
 domain: sale
-alias: Write_to_iceberg_for_Customer_Harshil_4
+alias: newloadscdp_archive
 discoveryPort:
-  name: Customer Details Harshil 3
-  shortDescription: Sample short description.
+  name: NewSCDP_archive_test
 inputPorts:
-  - alias: Customer_Master_3
+  - alias: On_Prim_dataset_1
     isDynamic: true
-    path: s3://dataverse-sale/datasets/##file_name##
+    path: /data/load_write_modes/sample2.parquet
     optional:
       persistDataFrame: false
       advanceOptions:
-        delimiter: ","
+        mergeSchema: true
       enableDataReconciliation: false
       enforceSchema: false
-      connection: s3 with Role miloni
-      dataSetUrn: urn:dv:dataset:640eff57-8c6d-4579-9f5a-b1caac6981f3
-    type: inputDelimited
+      connection: S3 Ayush Connection
+      dataSetUrn: urn:dv:dataset:79df852a-ee50-4302-9982-4ef09a978fe0
+    type: inputParquet
 productState:
   isDynamic: true
-  alias: Write_to_iceberg_for_Customer_Harshil
+  alias: newloadscdp_archive
   retentionVersions: ""
   logicalSchema:
     properties:
-      Customer_ID:
+      S:
         type: STRING
-        description: Unique identifier for each customer.
-        sourceColumn: Customer_ID
-        sourceTable: customers
-      First_Name:
-        type: STRING
-        description: First name of the customer.
-        sourceColumn: First_Name
-        sourceTable: customers
-        isPII: true
-      Middle_Name:
-        type: STRING
-        description: Middle name of the customer.
-        sourceColumn: Middle_Name
-        sourceTable: customers
-        isPII: true
-      Last_Name:
-        type: STRING
-        description: Last name of the customer.
-        sourceColumn: Last_Name
-        sourceTable: customers
-        isPII: true
-      Date_of_Birth:
-        type: STRING
-        description: Date of birth of the customer.
-        sourceColumn: Date_of_Birth
-        sourceTable: customers
-        isPII: true
-      Age:
-        type: STRING
-        description: Age of the customer.
-        sourceColumn: Age
-        sourceTable: customers
-      Gender:
-        type: STRING
-        description: Gender of the customer.
-        sourceColumn: Gender
-        sourceTable: customers
-      Email:
-        type: STRING
-        description: Email address of the customer.
-        sourceColumn: Email
-        sourceTable: customers
-        isPII: true
-      Phone_Number:
-        type: STRING
-        description: Phone number of the customer.
-        sourceColumn: Phone_Number
-        sourceTable: customers
-        isPII: true
-      Loyalty_Id:
-        type: STRING
-        description: Identifier for the loyalty program associated with the customer.
-        sourceColumn: Loyalty_Id
-        sourceTable: customers
-      State:
-        type: STRING
-        description: State of residence of the customer.
-        sourceColumn: State
-        sourceTable: customers
-      Country:
-        type: STRING
-        description: Country of residence of the customer.
-        sourceColumn: Country
-        sourceTable: customers
-      Zipcode:
-        type: STRING
-        description: Zip code of the customer's address.
-        sourceColumn: Zipcode
-        sourceTable: customers
-      Household_Income:
-        type: STRING
-        description: Household income of the customer.
-        sourceColumn: Household_Income
-        sourceTable: customers
-        isPII: true
-      Consent_Flag:
-        type: STRING
-        description: Flag indicating whether the customer has given consent for
-          marketing communication.
-        sourceColumn: Consent_Flag
-        sourceTable: customers
-      Employee_Flag:
-        type: STRING
-        description: Flag indicating whether the customer is an employee.
-        sourceColumn: Employee_Flag
-        sourceTable: customers
-      Relationship_SPOC_ID:
-        type: STRING
-        description: Identifier for the single point of contact (SPOC) associated with
-          the customer's relationship.
-        sourceColumn: Relationship_SPOC_ID
-        sourceTable: customers
-      Relationship_SPOC_Store_ID:
-        type: STRING
-        description: Identifier for the store associated with the single point of
-          contact (SPOC) of the customer's relationship.
-        sourceColumn: Relationship_SPOC_Store_ID
-        sourceTable: customers
-      City:
-        type: STRING
-        description: City of residence of the customer.
-        sourceColumn: City
-        sourceTable: customers
-      Card_Id:
-        type: STRING
-        description: Identifier for the card associated with the customer.
-        sourceColumn: Card_Id
-        sourceTable: customers
-        isPII: true
+        description: ""
   stateStoreType: loadDataIceberg
-  isProfilingEnabled: true
+  isProfilingEnabled: false
   updateStrategy: Overwrite
-  tableName: s3source.customer_details_sadp_harshil
-  warehousePath: s3://bp-spark-sql-library-test-acc/
-  catalogName: glue
+  tableName: iceberg_meta.newsadp_archive
+  warehousePath: /data/tmp/iceberg_warehouse/
+  catalogName: random_catalog
   optional:
     persistDataFrame: false
     enableDataReconciliation: false
-    enforceSchema: false
+    enforceSchema: true
     enforceSchemaMethod: Warning
-    catalogType: glue
-  refreshInterval: None
+    catalogType: postgres
+  refreshInterval: 5 * * 5 *
 transformation:
   - isDynamic: true
     alias: Spark_SQL_1
-    description: transformation_harshil
+    description: newscdp_archive
     sequence: 2
     inputDataFrameList:
-      - inputDataFrame: Customer_Master_2
-        tempViewName: customer_master_harshil
-    query: select * from customer_master_harshil
+      - inputDataFrame: On_Prim_dataset_1
+        tempViewName: newsadp_archive
+    query: select * from newsadp_archive
     optional:
       persistDataFrame: false
     type: operationThroughSqlQuery
 controlPort:
-  dataQualityRules:
-    NullValueCheck:
-      productState:
-        checks:
-          - column: Card_Id
-            expression: <=
-            number: 1
-            owner: Miloni Shah
-        referenceAlias: Write_to_iceberg_for_Customer_Harshil_3
+  dataQualityRules: {}
+  
