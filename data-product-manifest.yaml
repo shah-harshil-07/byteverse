@@ -1,15 +1,15 @@
 version: 0.0.3
 jobId: "1002"
-jobName: Customer Details Harshil 2
+jobName: Customer Details Harshil 4
 jobType: Source Aligned Data Product
 developerId: a421c8d2-ced6-4227-993e-04155a8feb50
 domain: sale
-alias: Write_to_iceberg_for_Customer_Harshil_2
+alias: Write_to_iceberg_for_Customer_Harshil_4
 discoveryPort:
-  name: Customer Details Harshil 2
+  name: Customer Details Harshil 4
   shortDescription: Sample short description.
 inputPorts:
-  - alias: Customer_Master_2
+  - alias: Customer_Master_4
     isDynamic: true
     path: s3://dataverse-sale/datasets/##file_name##
     optional:
