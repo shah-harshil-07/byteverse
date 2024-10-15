@@ -6,7 +6,7 @@ developerId: a7213db3-af1d-4810-ac21-e49160b82291
 domain: sale
 alias: newloadscdp_archive_2
 discoveryPort:
-  name: NewSCDP_archive_test
+  name: NewSCDP_archive_test_2
 inputPorts:
   - alias: On_Prim_dataset_1
     isDynamic: true
