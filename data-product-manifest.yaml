@@ -23,7 +23,7 @@ inputPorts:
     type: inputDelimited
 productState:
   isDynamic: true
-  alias: Write_to_iceberg_for_Customer_Harshil_3
+  alias: Write_to_iceberg_for_Customer_Harshil
   retentionVersions: ""
   logicalSchema:
     properties:
