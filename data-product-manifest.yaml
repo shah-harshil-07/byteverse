@@ -157,7 +157,7 @@ transformation:
     description: transformation_harshil
     sequence: 2
     inputDataFrameList:
-      - inputDataFrame: Customer_Master_2
+      - inputDataFrame: Customer_Master_3
         tempViewName: customer_master_harshil
     query: select * from customer_master_harshil
     optional:
